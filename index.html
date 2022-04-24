@@ -1,20 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fall 2021 Creative Tech 4</title>
+   <meta charset="UTF-8">
+   <meta http-equiv = "X-UA-Compatible" content = "IE = edge">
+   <meta name = "viewport" content = "width= device-width, initial-scale = 1.0">
+   <title> THE CAT ALARM CLOCK </title>
+   <style> img {max-width: 300px;} ;</style>
+  
+  
 </head>
 <body>
-    <h1 style="font-size:40 px"> Creative Tech 3</h1>
-   
-    <div>
-       <p style="font-size:200px"> <a href="https://www.zhuscarlettdesign.com/new-page">Goldberg Machine </a> </p>
-      <p style="font-size:200px"> <a href="https://www.zhuscarlettdesign.com/new-page-2">Blender Chair</a>  </p>
-      <p style="font-size:200px"> <a href="https://www.zhuscarlettdesign.com/studio-4">Digital Twins </a>  </p>
-      <p style="font-size:200px"> <a href="https://www.zhuscarlettdesign.com/cd-guns">Personal Project </a>  </p>
-    </div>
   
+   <section id="catSection"></section>
+   <section id="infoSection"></section>
+   <h1>Cat alarm </h1>
+   <p>DUDE OMG IT IS <span id='date-time'></span>.</p>
+   <button id="startTheProcess"> Make noise</button>
+ 
+   <script>
+       // question: Where to put x-api key in header
+       var dt = new Date();
+       document.getElementById('date-time').innerHTML=dt;
+       let triggerButton = document.getElementById("startTheProcess")
+       let soundURL = "https://api.soundcloud.com"
+       //declare image variable
+       let catSection = document.getElementById("catSection")
+       let catapiKey = "lc8XKcCBRXjZpL4uoKHVd7cQBcvUupICPWyM6D1w"
 
-</body>
+ 
+ 
+       function triggerHandler() {
+          
+           fetchCat()
+           console.info("clicked");
+       }
+      
+     
+       function fetchCat() {
+            //if the energy level is greater than 3, then post message to slack via IFTTT
+      
+ 
+           fetch(soundURL)
+               .then((response) => {
+                   return response.json()
+                  
+               })
+               .then((data) => {
+                   catDataHandler(data)
+               })
+               .catch((serverError) => {
+                   console.error(serverError)
+               })
+       }
+ 
+       function catDataHandler (catsData)
+       {
+           console.info(catsData)
+           let randFromRange = Math.floor(Math.random()*catsData.length)
+           let randCat = catsData[randFromRange]
+           
+ 
+          
+       }
+ 
+       function request ()
+       {
+          
+       }
+      
+ 
+       triggerButton.addEventListener('click', triggerHandler)
+             
+ 
+   </script>
+ 
+</body>  
+ 
+     
 </html>
-© 2022 GitHub, Inc.
+ 
+ 
+ 
